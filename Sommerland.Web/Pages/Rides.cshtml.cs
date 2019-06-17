@@ -11,7 +11,7 @@ namespace Sommerland.Web.Pages
 {
     public class RidesModel : PageModel
     {
-        
+
         private int rideId;
         private Ride ride = new Ride();
         private RideRepository rideRepository = new RideRepository();
