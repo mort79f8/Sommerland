@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Collections.Generic;
 using System.Text;
 
@@ -75,10 +76,13 @@ namespace Sommerland.Entities
             return brokenReports.Count;
         }
 
-        //    public int DaysSinceLastShutdown()
-        //    {
-        //        throw NotImplementedException;
-        //    }
+        public int DaysSinceLastShutdown()
+        {
+            var orderedReports = Reports.OrderByDescending(r => r.ReportTime );
+            var latestReport = orderedReports.FirstOrDefault();
+            TimeSpan timeSpan = DateTime.Today - latestReport.ReportTime;
+            return timeSpan.Days;
+        }
 
         public string GetShortDescription()
         {

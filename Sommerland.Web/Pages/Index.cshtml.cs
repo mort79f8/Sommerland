@@ -15,7 +15,7 @@ namespace Sommerland.Web.Pages
         public List<Ride> rides { get; set; }
         public void OnGet()
         {
-            //rides = rideRepository.GetAll();
+            rides = rideRepository.GetAll();
         }
     }
 }

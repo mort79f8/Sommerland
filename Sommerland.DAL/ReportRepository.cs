@@ -2,13 +2,13 @@
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Linq;
 using System.Text;
 
 namespace Sommerland.DAL
 {
     public class ReportRepository : RepositoryBase
     {
-        private RideRepository rideRepository = new RideRepository();
         public List<Report> GetAll()
         {
             string sql = "SELECT * FROM Rides";
