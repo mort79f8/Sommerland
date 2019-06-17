@@ -2,8 +2,7 @@
 @model Sommerland.Web.Pages.RidesModel
 @{
     ViewData["Title"] = "Rides";
-    string id = (string)RouteData.Values["rideId"];
-    bool isTrue = int.TryParse(id, out int rideId);
+    bool isTrue = int.TryParse((string)RouteData.Values["rideId"], out int rideId);
 }
 
 <div>
@@ -11,4 +10,6 @@
     <p><strong>Category:</strong> @Model.Ride.Category</p>
     <p><strong>Status:</strong> @Model.Ride.Status</p>
     <p><strong>Description:</strong> @Model.Ride.Description</p>
+    <p><strong>Number Of Shutdowns:</strong> @Model.Ride.NumberOfShutdowns()</p>
+    <p><strong>Number of Days since last Shutdown:</strong> @Model.Ride.DaysSinceLastShutdown()</p>
 </div>

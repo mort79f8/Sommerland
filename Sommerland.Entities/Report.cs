@@ -16,13 +16,13 @@ namespace Sommerland.Entities
         {
         }
 
-        public Report(int id, Ride ride, Status status, DateTime reportTime, string note)
+        public Report(int id, Status status, DateTime reportTime, string note, Ride ride)
         {
             Id = id;
-            Ride = ride;
             Status = status;
             ReportTime = reportTime;
             Note = note;
+            Ride = ride;
         }
 
         public int Id { get => id; set => id = value; }
