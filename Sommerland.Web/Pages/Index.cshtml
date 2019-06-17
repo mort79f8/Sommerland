@@ -4,7 +4,19 @@
     ViewData["Title"] = "Index";
 }
 
-<h1>Index</h1>
 
-<p>Sommerland</p>
+<div class="Ride">
+    @{
+
+        foreach (var ride in Model.rides)
+        {
+            <hr />
+            <p><strong>Navn:</strong> @ride.Name</p>
+            <img src="@ride.ImageUrl" alt="@ride.ImageAltText" width="200px" />
+            <p><strong>Status:</strong> @ride.Status</p>
+            <p><strong>Beskrivelse:</strong> @ride.GetShortDescription()</p>
+            <hr />
+        }
+    }
+</div>
 

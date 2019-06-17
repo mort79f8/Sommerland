@@ -12,8 +12,12 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Pages\Shared\" />
     <Folder Include="wwwroot\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Sommerland.DAL\Sommerland.DAL.csproj" />
+    <ProjectReference Include="..\Sommerland.Entities\Sommerland.Entities.csproj" />
   </ItemGroup>
 
 </Project>
