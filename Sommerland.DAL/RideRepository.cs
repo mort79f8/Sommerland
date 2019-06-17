@@ -10,6 +10,7 @@ namespace Sommerland.DAL
     public class RideRepository : RepositoryBase
     {
         private CategoryRepository category = new CategoryRepository();
+        private ReportRepository reports = new ReportRepository();
         public List<Ride> GetAll()
         {
             string sql = "SELECT * FROM Rides";
@@ -35,6 +36,7 @@ namespace Sommerland.DAL
             foreach (DataRow row in dataTable.Rows)
             {
                 Ride ride = new Ride((int)row["RideId"], (string)row["Name"], (string)row["Description"], category.GetCategory((int)row["CategoryId"]), (string)row["ImageUrl"],(string)row["ImageAltText"]);
+                ride.Add(reports.GetReportFromRide(ride));
                 rides.Add(ride);
             }
             return rides;

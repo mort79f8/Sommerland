@@ -5,18 +5,18 @@
 }
 
 
-<div class="Ride">
+<div class="ride">
     @{
 
-        foreach (var ride in Model.rides)
+        @*foreach (var ride in Model.rides)
         {
             <hr />
             <p><strong>Navn:</strong><a href="/Rides/@ride.Id">@ride.Name</a> </p>
-            <img src="@ride.ImageUrl" alt="@ride.ImageAltText" width="200px" />
+            <img src="@ride.ImageUrl" alt="@ride.ImageAltText" width="200" />
             <p><strong>Status:</strong> @ride.Status</p>
             <p><strong>Beskrivelse:</strong> @ride.GetShortDescription()</p>
             <hr />
-        }
+        }*@
     }
 </div>
 

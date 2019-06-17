@@ -11,7 +11,7 @@ namespace Sommerland.Entities
         private string description;
         private RideCategory category;
         private Status status;
-        private List<Report> reports;
+        private List<Report> reports = new List<Report>();
         private string imageUrl;
         private string imageAltText;
 
@@ -25,8 +25,6 @@ namespace Sommerland.Entities
             Name = name;
             Description = description;
             Category = category;
-            Status = status;
-            Reports = reports;
             ImageUrl = imageUrl;
             ImageAltText = imageAltText;
         }
@@ -36,14 +34,46 @@ namespace Sommerland.Entities
         public string Description { get => description; set => description = value; }
         public RideCategory Category { get => category; set => category = value; }
         public Status Status { get => status; set => status = value; }
-        public List<Report> Reports { get => reports; set => reports = value; }
+        public IReadOnlyList<Report> Reports { get => reports.AsReadOnly(); }
         public string ImageUrl { get => imageUrl; set => imageUrl = value; }
         public string ImageAltText { get => imageAltText; set => imageAltText = value; }
+        public void Add(Report report)
+        {
+            report.Ride = this;
+            reports.Add(report);
 
-        //    public int NumberOfShutdowns()
-        //    {
-        //        throw NotImplementedException;
-        //    }
+        }
+        public void Add(List<Report> reports)
+        {
+            this.reports.AddRange(reports);
+
+            //Another solution
+            //foreach (Report report in reports)
+            //{
+            //    if (report.Ride != null && report.Ride.Id != this.Id)
+            //    {
+
+            //    }
+            //    else
+            //    {
+
+            //        Add(report);
+            //    }
+            //}
+        }
+        public int NumberOfShutdowns()
+        {
+            List<Report> brokenReports = new List<Report>();
+
+            foreach (var report in Reports)
+            {
+                if (report.Status == Status.Broken)
+                {
+                    brokenReports.Add(report);
+                }
+            }
+            return brokenReports.Count;
+        }
 
         //    public int DaysSinceLastShutdown()
         //    {

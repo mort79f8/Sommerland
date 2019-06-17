@@ -11,7 +11,6 @@ namespace Sommerland.Entities
         private Status status;
         private DateTime reportTime;
         private string note;
-        private Ride rideID;
 
         public Report()
         {
@@ -31,6 +30,5 @@ namespace Sommerland.Entities
         public Status Status { get => status; set => status = value; }
         public DateTime ReportTime { get => reportTime; set => reportTime = value; }
         public string Note { get => note; set => note = value; }
-        public Ride RideID { get => rideID; set => rideID = value; }
     }
 }
