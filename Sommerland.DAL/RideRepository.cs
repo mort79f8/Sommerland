@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Linq;
 using System.Text;
 
 namespace Sommerland.DAL
@@ -16,6 +17,15 @@ namespace Sommerland.DAL
             DataTable data = ExecuteQuery(sql);
 
             return HandleData(data);
+        }
+
+        public Ride GetRide(int id)
+        {
+            string sql = $"SELECT * FROM Rides WHERE (RideId={id})";
+
+            DataTable date = ExecuteQuery(sql);
+
+            return HandleData(date).FirstOrDefault();
         }
 
         private List<Ride> HandleData(DataTable dataTable)
