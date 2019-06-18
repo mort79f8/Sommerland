@@ -16,11 +16,12 @@ namespace Sommerland.Web.Pages
         [BindProperty(SupportsGet = true)]
         public string SearchName { get; set; }
         [BindProperty(SupportsGet = true)]
-        public RideCategory Category { get; set; }
+        public Nullable<int> Category { get; set; }
         [BindProperty(SupportsGet = true)]
         public Nullable<int> Status { get; set; }
         [BindProperty(SupportsGet = true)]
         public Ride Result { get; set; }
+        [BindProperty(SupportsGet = true)]
         public List<Ride> Results { get; set; }
 
         public void OnGet()
@@ -35,7 +36,7 @@ namespace Sommerland.Web.Pages
             }
             else if (Status != null)
             {
-
+                Results = SearchByStatus();
             }
 
         }
@@ -45,7 +46,7 @@ namespace Sommerland.Web.Pages
             var rideList = rideRepository.GetAll();
             foreach (var ride in rideList)
             {
-                if (SearchName == ride.Name)
+                if (SearchName.ToLower() == ride.Name.ToLower())
                 {
                     return ride;
                 }
@@ -59,7 +60,7 @@ namespace Sommerland.Web.Pages
             var rideList = rideRepository.GetAll();
             foreach (var ride in rideList)
             {
-                if (Category == ride.Category)
+                if (Category == ride.Category.Id)
                 {
                     rides.Add(ride);
                 }
