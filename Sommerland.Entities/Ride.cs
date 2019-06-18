@@ -86,6 +86,10 @@ namespace Sommerland.Entities
 
         public string GetShortDescription()
         {
+            if (Description.Length < 47)
+            {
+                return Description;
+            }
             return Description.Substring(0, 47) + "...";
         }
     }
