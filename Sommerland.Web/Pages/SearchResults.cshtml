@@ -1,0 +1,36 @@
+﻿@page
+@model Sommerland.Web.Pages.SearchResultsModel
+@{
+    ViewData["Title"] = "SearchResults";
+}
+
+<h1>SearchResults</h1>
+
+@{
+    if (Model.Result.Name != null)
+    {
+        <div>
+            <h1>@Model.Result.Name</h1>
+            <p><strong>Category:</strong> @Model.Result.Category.Name</p>
+            <p><strong>Status:</strong> @Model.Result.Status</p>
+            <p><strong>Description:</strong> @Model.Result.Description</p>
+            <p><strong>Number Of Shutdowns:</strong> @Model.Result.NumberOfShutdowns()</p>
+            <p><strong>Number of Days since last Shutdown:</strong> @Model.Result.DaysSinceLastShutdown()</p>
+        </div>
+    }
+    else if (Model.Results != null)
+    {
+        foreach (Ride ride in Model.Results)
+        {
+            <div>
+                <h1>@ride.Name</h1>
+                <p><strong>Category:</strong> @ride.Category.Name</p>
+                <p><strong>Status:</strong> @ride.Status</p>
+                <p><strong>Description:</strong> @ride.Description</p>
+                <p><strong>Number Of Shutdowns:</strong> @ride.NumberOfShutdowns()</p>
+                <p><strong>Number of Days since last Shutdown:</strong> @ride.DaysSinceLastShutdown()</p>
+                <hr />
+            </div>
+        }
+    }
+}

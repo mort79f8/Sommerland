@@ -13,9 +13,14 @@ namespace Sommerland.Web.Pages
     {
         private RideRepository rideRepository = new RideRepository();
         public List<Ride> rides { get; set; }
+        [BindProperty(SupportsGet = true)]
+        public List<RideCategory> Categorys { get; set; } = new List<RideCategory>();
+
         public void OnGet()
         {
+            CategoryRepository categoryRepository = new CategoryRepository();
             rides = rideRepository.GetAll();
+            Categorys = categoryRepository.GetAll();
         }
     }
 }
