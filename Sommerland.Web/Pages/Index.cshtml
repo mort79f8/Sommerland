@@ -11,9 +11,12 @@
             <input type="text" name="SearchName" value="" />
             <select name="Category">
                 <option value="" selected></option>
-                <option value="1">Rutsjebane</option>
-                <option value="2">Pendulforlystelse</option>
-                <option value="3">Vandforlystelse</option>
+                @{ 
+                    foreach (var category in Model.Categorys)
+                    {
+                        <option value="@(category.Id)">@(category.Name)</option>
+                    }
+                }
             </select>
             <select name="Status">
                 <option value="" selected></option>

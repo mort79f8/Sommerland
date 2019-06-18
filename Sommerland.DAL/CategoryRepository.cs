@@ -11,7 +11,7 @@ namespace Sommerland.DAL
     {
         public List<RideCategory> GetAll()
         {
-            string sql = "SELECT * FROM Rides";
+            string sql = "SELECT * FROM RideCategories";
 
             DataTable data = ExecuteQuery(sql);
 
