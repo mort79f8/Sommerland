@@ -47,20 +47,6 @@ namespace Sommerland.Entities
         public void Add(List<Report> reports)
         {
             this.reports.AddRange(reports);
-
-            //Another solution
-            //foreach (Report report in reports)
-            //{
-            //    if (report.Ride != null && report.Ride.Id != this.Id)
-            //    {
-
-            //    }
-            //    else
-            //    {
-
-            //        Add(report);
-            //    }
-            //}
         }
         public int NumberOfShutdowns()
         {
@@ -80,12 +66,20 @@ namespace Sommerland.Entities
         {
             var orderedReports = Reports.OrderByDescending(r => r.ReportTime );
             var latestReport = orderedReports.FirstOrDefault();
+            if (latestReport == null)
+            {
+                return -1;
+            }
             TimeSpan timeSpan = DateTime.Today - latestReport.ReportTime;
             return timeSpan.Days;
         }
 
         public string GetShortDescription()
         {
+            if (Description.Length < 47)
+            {
+                return Description;
+            }
             return Description.Substring(0, 47) + "...";
         }
     }

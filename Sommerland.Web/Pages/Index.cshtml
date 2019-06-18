@@ -4,19 +4,39 @@
     ViewData["Title"] = "Index";
 }
 
+<div class="wrapper">
+    <div class="search">
+        <p>Brug et af understående muligheder for at søge efter forlystelser</p>
+        <form action="/SearchResults" method="get">
+            <input type="text" name="SearchName" value="" />
+            <select name="Category">
+                <option value="" selected></option>
+                <option value="1">Rutsjebane</option>
+                <option value="2">Pendulforlystelse</option>
+                <option value="3">Vandforlystelse</option>
+            </select>
+            <select name="Status">
+                <option value="" selected></option>
+                <option value="0">Working</option>
+                <option value="1">Broken</option>
+                <option value="2">BeingRepaired</option>
+            </select>
+            <button>Search</button>
+        </form>
+    </div>
 
-<div class="ride">
-    @{
+    <div class="ride">
+        @{
 
-        foreach (var ride in Model.rides)
-        {
-            <hr />
-            <p><strong>Navn:</strong><a href="/Rides/@ride.Id">@ride.Name</a> </p>
-            <img src="@ride.ImageUrl" alt="@ride.ImageAltText" width="200" />
-            <p><strong>Status:</strong> @ride.Status</p>
-            <p><strong>Beskrivelse:</strong> @ride.GetShortDescription()</p>
-            <hr />
+            foreach (var ride in Model.rides)
+            {
+                <hr />
+                <p><strong>Navn:</strong><a href="/Rides/@ride.Id">@ride.Name</a> </p>
+                <img src="@ride.ImageUrl" alt="@ride.ImageAltText" width="200" />
+                <p><strong>Status:</strong> @ride.Status</p>
+                <p><strong>Beskrivelse:</strong> @ride.GetShortDescription()</p>
+                <hr />
+            }
         }
-    }
+    </div>
 </div>
-
