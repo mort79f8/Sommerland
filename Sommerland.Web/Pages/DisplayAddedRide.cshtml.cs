@@ -11,16 +11,16 @@ namespace Sommerland.Web.Pages
 {
     public class DisplayAddedRideModel : PageModel
     {
-        [BindProperty(SupportsGet = true)]
-        public string Name { get; set; }
-        [BindProperty(SupportsGet = true)]
-        public int Category { get; set; }
-        [BindProperty(SupportsGet = true)]
-        public string ImageUrl { get; set; }
-        [BindProperty(SupportsGet = true)]
-        public string ImageAltText { get; set; }
-        [BindProperty(SupportsGet = true)]
-        public string Description { get; set; }
+        //[BindProperty(SupportsGet = true)]
+        //public string Name { get; set; }
+        //[BindProperty(SupportsGet = true)]
+        //public int Category { get; set; }
+        //[BindProperty(SupportsGet = true)]
+        //public string ImageUrl { get; set; }
+        //[BindProperty(SupportsGet = true)]
+        //public string ImageAltText { get; set; }
+        //[BindProperty(SupportsGet = true)]
+        //public string Description { get; set; }
         [BindProperty(SupportsGet = true)]
         public bool IsFormFilled { get; set; }
         [BindProperty(SupportsGet = true)]
@@ -31,35 +31,37 @@ namespace Sommerland.Web.Pages
         {
             CategoryRepository categoryRepositort = new CategoryRepository();
 
-            if (Name == null || ImageUrl == null || ImageAltText == null || Description == null)
+            if (Ride.Name == null || Ride.ImageUrl == null || Ride.ImageAltText == null || Ride.Description == null)
             {
                 IsFormFilled = false;
             }
             else
             {
                 IsFormFilled = true;
-                Ride.Name = Name;
-                Ride.Description = Description;
-                Ride.Category = categoryRepositort.GetCategory(Category);
-                Ride.ImageUrl = ImageUrl;
-                Ride.ImageAltText = ImageAltText;
+                //Ride.Name = Name;
+                //Ride.Description = Description;
+                Ride.Category = categoryRepositort.GetCategory(Ride.Category.Id);
+                //Ride.ImageUrl = ImageUrl;
+                //Ride.ImageAltText = ImageAltText;
             }
         }
         public void OnGetVerified()
         {
             CategoryRepository categoryRepositort = new CategoryRepository();
-            Ride.Category = categoryRepositort.GetCategory(Category);
+            Ride.Category = categoryRepositort.GetCategory(Ride.Category.Id);
+            RideRepository rideRepository = new RideRepository();
+            rideRepository.Insert(Ride);
             IsSubmitted = true;
         }
 
         public Dictionary<string, string> GetRideAsDictionary()
         {
             return new Dictionary<string, string>() {
-                {"name", Ride.Name },
-                {"category", Ride.Category.Id.ToString() },
-                {"description", Ride.Description },
-                {"imageUrl", Ride.ImageUrl },
-                {"imageAltText", Ride.ImageAltText}
+                {"Ride.Name", Ride.Name },
+                {"Ride.Category.Id", Ride.Category.Id.ToString() },
+                {"Ride.Description", Ride.Description },
+                {"Ride.ImageUrl", Ride.ImageUrl },
+                {"Ride.ImageAltText", Ride.ImageAltText}
             };
         }
     }

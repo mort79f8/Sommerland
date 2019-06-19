@@ -42,5 +42,11 @@ namespace Sommerland.DAL
             return rides;
         }
 
+        public int Insert(Ride ride)
+        {
+                string sql = $"INSERT INTO Rides VALUES ('{ride.Name}', '{ride.Description}','{ride.Category.Id}', '{ride.ImageUrl}', '{ride.ImageAltText}')";
+
+                return ExecuteNonQuery(sql);
+        }
     }
 }

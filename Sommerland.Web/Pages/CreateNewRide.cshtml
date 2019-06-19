@@ -9,12 +9,12 @@
     <h1>Tilføj en ny forlystelse</h1>
     <form action="/DisplayAddedRide" method="get" id="addRideForm">
         <div>
-            <label>Navn:</label>
-            <input type="text" name="Name" placeholder="indtast navn" />
+            <label asp-for="Ride.Name"></label>
+            <input asp-for="Ride.Name" placeholder="indtast navn" />
         </div>
         <div>
-            <label>Kategori:</label>
-            <select name="Category">
+            <label asp-for="Ride.Category"></label>
+            <select asp-for="Ride.Category.Id">
                 @{
                     foreach (var category in Model.Categorys)
                     {
@@ -24,14 +24,14 @@
             </select>
         </div>
         <div>
-            <label>Billede sti:</label>
-            <input type="text" name="ImageUrl" value="Billede sti /img/picture.jpg"/>
+            <label asp-for="Ride.ImageUrl"></label>
+            <input asp-for="Ride.ImageUrl" value="Billede sti /img/picture.jpg"/>
         </div>
         <div>
-            <label>Billede Alternativ tekst:</label>
-            <input type="text" name="ImageAltText" placeholder="indtast image alt" />
+            <label asp-for="Ride.ImageAltText"></label>
+            <input asp-for="Ride.ImageAltText" placeholder="indtast image alt" />
         </div>    
-        <textarea name="Description" form="addRideForm" rows="4" cols="50" placeholder="indtast beskrivelse af forlystelsen her..."></textarea><br />
+        <textarea asp-for="Ride.Description" form="addRideForm" rows="4" cols="50" placeholder="indtast beskrivelse af forlystelsen her..."></textarea><br />
         <button>Submit</button>
     </form>
 
