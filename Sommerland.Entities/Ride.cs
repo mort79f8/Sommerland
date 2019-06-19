@@ -30,6 +30,15 @@ namespace Sommerland.Entities
             ImageAltText = imageAltText;
         }
 
+        public Ride(string name, string description, RideCategory category, string imageUrl, string imageAltText)
+        {
+            Name = name;
+            Description = description;
+            Category = category;
+            ImageUrl = imageUrl;
+            ImageAltText = imageAltText;
+        }
+
         public int Id { get => id; set => id = value; }
         public string Name { get => name; set => name = value; }
         public string Description { get => description; set => description = value; }

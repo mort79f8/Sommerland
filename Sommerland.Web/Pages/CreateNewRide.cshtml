@@ -1,0 +1,40 @@
+﻿@page
+@model Sommerland.Web.Pages.CreateNewRideModel
+@{
+    ViewData["Title"] = "CreateNewRide";
+}
+
+
+<div class="addRide">
+    <h1>Tilføj en ny forlystelse</h1>
+    <form action="/DisplayAddedRide" method="get" id="addRideForm">
+        <div>
+            <label>Navn:</label>
+            <input type="text" name="Name" placeholder="indtast navn" />
+        </div>
+        <div>
+            <label>Kategori:</label>
+            <select name="Category">
+                @{
+                    foreach (var category in Model.Categorys)
+                    {
+                        <option value="@(category.Id)">@(category.Name)</option>
+                    }
+                }
+            </select>
+        </div>
+        <div>
+            <label>Billede sti:</label>
+            <input type="text" name="ImageUrl" value="Billede sti /img/picture.jpg"/>
+        </div>
+        <div>
+            <label>Billede Alternativ tekst:</label>
+            <input type="text" name="ImageAltText" placeholder="indtast image alt" />
+        </div>    
+        <textarea name="Description" form="addRideForm" rows="4" cols="50" placeholder="indtast beskrivelse af forlystelsen her..."></textarea><br />
+        <button>Submit</button>
+    </form>
+
+
+</div>
+

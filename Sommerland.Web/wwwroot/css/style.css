@@ -80,6 +80,15 @@ ride {
     display: flex;
 }
 
+addRide {
+    display: flex;
+    flex-direction:column;
+}
+
+/*input, select {
+    display: block;
+}*/
+
 
 
 /* Responsive */
