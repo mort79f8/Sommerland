@@ -35,6 +35,21 @@
     </div>
     <br />
     <div>
+        <form action="/" method="post">
+            <select name="selectedReport" onchange="myFunction(this.value)">
+                @{
+                    foreach (var report in Model.Ride.Reports)
+                    {
+                        <option value="@(report.Note)" >@report.ReportTime @report.Status</option>
+                    }
+                }
+            </select>
+        </form>
+    </div>
+    <div>
+        <span id="seReport"></span>
+    </div>
+    @*<div>
         <table>
             <tr>
                 <th>Status</th>
@@ -52,5 +67,10 @@
                 }
             }
         </table>
-    </div>
-</div class="ride">
+    </div>*@
+</div>
+<script>
+    function myFunction(value) {
+        document.getElementById("seReport").innerHTML = value;
+    }
+</script>
