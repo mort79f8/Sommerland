@@ -1,0 +1,34 @@
+﻿@page
+@model Sommerland.Web.Pages.DisplayAddedRideModel
+@{
+    ViewData["Title"] = "DisplayAddedRide";
+}
+
+@{
+    if (Model.IsFormFilled)
+    {
+        <div class="ride">
+            <p><strong>Navn:</strong>@Model.Ride.Name</p>
+            <p><strong>Kategory:</strong>@Model.Ride.Category.Name</p>
+            <img src="@Model.Ride.ImageUrl" alt="@Model.Ride.ImageAltText" width="200" />
+            <p><strong>Beskrivelse:</strong> @Model.Ride.Description</p>
+        </div>
+        <a asp-page="DisplayAddedRide" asp-page-handler="verified" asp-all-route-data="@(Model.GetRideAsDictionary())">Opret forlystelse</a>
+    }
+    else if (Model.IsSubmitted)
+    {
+            <p>Forlystelsen er blevet tilføjet til Databasen</p>
+            <a href="/Index">Tilbage til forsiden</a>
+    }
+    else
+    {
+        <p>Alle detaljerne er ikke ud fyldt gå tilbage og prøv igen</p>
+        <a href="/CreateNewRide">tilbage til oprettelse af ny forlystelse</a>
+    }
+
+}
+
+@*<form method="post">
+        <input type="hidden" asp-for="Ride"/>
+    <input type="submit" value="Opret forlystelse POST" />
+    </form>*@

@@ -2,19 +2,21 @@
 using System.Linq;
 using System.Collections.Generic;
 using System.Text;
+using System.ComponentModel.DataAnnotations;
 
 namespace Sommerland.Entities
 {
     public class Ride
     {
+        #region fields
         private int id;
         private string name;
         private string description;
         private RideCategory category;
-        private Status status;
         private List<Report> reports = new List<Report>();
         private string imageUrl;
         private string imageAltText;
+        #endregion
 
         public Ride()
         {
@@ -30,14 +32,36 @@ namespace Sommerland.Entities
             ImageAltText = imageAltText;
         }
 
+        public Ride(string name, string description, RideCategory category, string imageUrl, string imageAltText)
+        {
+            Name = name;
+            Description = description;
+            Category = category;
+            ImageUrl = imageUrl;
+            ImageAltText = imageAltText;
+        }
+
         public int Id { get => id; set => id = value; }
+        [Display(Name="Navn")]
         public string Name { get => name; set => name = value; }
+        [Display(Name = "Beskrivelse")]
         public string Description { get => description; set => description = value; }
+        [Display(Name = "Kategori")]
         public RideCategory Category { get => category; set => category = value; }
-        public Status Status { get => status; set => status = value; }
+#warning status is not finished
+        public Status Status { get
+            {
+                return Status.Working;
+            }
+        }
         public IReadOnlyList<Report> Reports { get => reports.AsReadOnly(); }
+        public IReadOnlyList<Report> ReportsOrderedByDate { get => reports.OrderByDescending(r => r.ReportTime).ToList().AsReadOnly(); }
+
+        [Display(Name = "Billede sti")]
         public string ImageUrl { get => imageUrl; set => imageUrl = value; }
+        [Display(Name = "Billede alternative text")]
         public string ImageAltText { get => imageAltText; set => imageAltText = value; }
+
         public void Add(Report report)
         {
             report.Ride = this;
@@ -64,8 +88,8 @@ namespace Sommerland.Entities
 
         public int DaysSinceLastShutdown()
         {
-            var orderedReports = Reports.OrderByDescending(r => r.ReportTime );
-            var latestReport = orderedReports.FirstOrDefault();
+            //var orderedReports = Reports.OrderByDescending(r => r.ReportTime );
+            var latestReport = ReportsOrderedByDate.FirstOrDefault();
             if (latestReport == null)
             {
                 return -1;
