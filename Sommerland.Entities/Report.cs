@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Text;
 
 namespace Sommerland.Entities
@@ -28,6 +29,7 @@ namespace Sommerland.Entities
         public int Id { get => id; set => id = value; }
         public Ride Ride { get => ride; set => ride = value; }
         public Status Status { get => status; set => status = value; }
+        [DataType(DataType.DateTime)]
         public DateTime ReportTime { get => reportTime; set => reportTime = value; }
         public string Note { get => note; set => note = value; }
     }

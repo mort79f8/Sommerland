@@ -18,9 +18,24 @@ namespace Sommerland.Web.Pages
 
         [BindProperty(SupportsGet = true)]
         public int RideId { get => rideId; set => rideId = value; }
+        [BindProperty]
+        public Report Report { get; set; }
         public Ride Ride { get => ride; set => ride = value; }
 
         public void OnGet()
+        {
+            InitializeRide();
+        }
+
+        public void OnPostVerified()
+        {
+            InitializeRide();
+            ride.Add(Report);
+            ReportRepository reportRepository = new ReportRepository();
+            reportRepository.Insert(Report);
+        }
+
+        private void InitializeRide()
         {
             ride = rideRepository.GetRide(RideId);
         }

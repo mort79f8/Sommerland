@@ -44,6 +44,13 @@ namespace Sommerland.DAL
             return HandleData(data);
         }
 
+        public int Insert(Report report)
+        {
+            string sql = $"INSERT INTO Reports VALUES ({(int)report.Status},'{report.ReportTime:yyyy-MM-dd hh:mm:ss}','{report.Note}',{report.Ride.Id})";
+
+            return ExecuteNonQuery(sql);
+        }
+
         private List<Report> HandleData(DataTable dataTable, Ride ride = null)
         {
             List<Report> reports = new List<Report>();

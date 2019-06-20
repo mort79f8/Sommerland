@@ -48,10 +48,16 @@ namespace Sommerland.Entities
         public string Description { get => description; set => description = value; }
         [Display(Name = "Kategori")]
         public RideCategory Category { get => category; set => category = value; }
-#warning status is not finished
         public Status Status { get
             {
-                return Status.Working;
+                if (ReportsOrderedByDate.Count == 0)
+                {
+                    return Status.Working;
+                }
+                else
+                {
+                    return ReportsOrderedByDate[0].Status;
+                }
             }
         }
         public IReadOnlyList<Report> Reports { get => reports.AsReadOnly(); }

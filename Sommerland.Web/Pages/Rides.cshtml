@@ -4,11 +4,53 @@
     ViewData["Title"] = "Rides";
 }
 
-<div>
-    <h1>@Model.Ride.Name</h1>
-    <p><strong>Category:</strong> @Model.Ride.Category.Name</p>
-    <p><strong>Status:</strong> @Model.Ride.Status</p>
-    <p><strong>Description:</strong> @Model.Ride.Description</p>
-    <p><strong>Number Of Shutdowns:</strong> @Model.Ride.NumberOfShutdowns()</p>
-    <p><strong>Number of Days since last Shutdown:</strong> @Model.Ride.DaysSinceLastShutdown()</p>
-</div>
+<div class="ride">
+    <div>
+        <h1>@Model.Ride.Name</h1>
+        <p><strong>Category:</strong> @Model.Ride.Category.Name</p>
+        <p><strong>Status:</strong> @Model.Ride.Status</p>
+        <p><strong>Description:</strong> @Model.Ride.Description</p>
+        <p><strong>Number Of Shutdowns:</strong> @Model.Ride.NumberOfShutdowns()</p>
+        <p><strong>Number of Days since last Shutdown:</strong> @Model.Ride.DaysSinceLastShutdown()</p>
+    </div>
+
+    <div class="ride">
+        <h2>Opret ny report</h2>
+        <form asp-page-handler="verified" asp-page="Rides" asp-route-rideid="@Model.Ride.Id" method="post" id="report">
+            <div>
+                <select asp-for="Report.Status">
+                    <option value="0">Working</option>
+                    <option value="1">Broken</option>
+                    <option value="2">Being Repaired</option>
+                </select>
+            </div>
+            <div>
+                <input asp-for="Report.ReportTime" value="@DateTime.Now" size="25" placeholder="Indtast dato eks: 2019-06-20" />
+            </div>
+            <div>
+                <textarea asp-for="Report.Note" form="report" rows="4" cols="50" placeholder="indtast beskrivelse af forlystelsen her..."></textarea><br />
+            </div>
+            <button>Opret report</button>
+        </form>
+    </div>
+    <br />
+    <div>
+        <table>
+            <tr>
+                <th>Status</th>
+                <th>Tid</th>
+                <th>Noter</th>
+            </tr>
+            @{
+                foreach (var report in Model.Ride.Reports)
+                {
+                    <tr>
+                        <td>@report.Status</td>
+                        <td>@report.ReportTime</td>
+                        <td>@report.Note</td>
+                    </tr>
+                }
+            }
+        </table>
+    </div>
+</div class="ride">
