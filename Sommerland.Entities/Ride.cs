@@ -100,7 +100,7 @@ namespace Sommerland.Entities
             {
                 return -1;
             }
-            TimeSpan timeSpan = DateTime.Today - latestReport.ReportTime;
+            TimeSpan timeSpan = DateTime.Now - latestReport.ReportTime;
             return timeSpan.Days;
         }
 
