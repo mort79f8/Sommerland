@@ -18,6 +18,7 @@
   <ItemGroup>
     <ProjectReference Include="..\Sommerland.DAL\Sommerland.DAL.csproj" />
     <ProjectReference Include="..\Sommerland.Entities\Sommerland.Entities.csproj" />
+    <ProjectReference Include="..\Sommerland.Service\Sommerland.Service.csproj" />
   </ItemGroup>
 
 </Project>

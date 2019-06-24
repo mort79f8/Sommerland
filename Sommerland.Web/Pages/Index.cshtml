@@ -42,4 +42,10 @@
             }
         }
     </div>
+
+    <img src="@Model.Weather.GetWeatherIcon()" alt="Vejr Ikon" />
+    <p>Dagens vejr: @Model.Weather.GetWeatherMain()</p>
+    <p>Beskrivelse: @Model.Weather.GetWeatherDesc()</p>
+    <p>Temperatur: @Model.Weather.GetTempature()</p>
+    
 </div>
